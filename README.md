@@ -6,7 +6,11 @@
 1. visual studio 2022 preview
 2. .net9
 
-## 编译：
+### 编译：
 ```shell
 dotnet publish .\Plugin\Plugin.csproj -c Release -r win-x86 -o ./build
 ```
+编译后的dll在`build`目录下
+
+### 调试
+使用vs的附加调试即可，建议在init中适当加一些sleep，用来等待调试器附加到进程。

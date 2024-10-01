@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
 
-public unsafe struct position_history_t
+public enum synctype_t
 {
-    public float animtime;
-
-    public vec3_t origin;
-    public vec3_t angle;
+    ST_SYNC = 0,
+    ST_RAND
 }

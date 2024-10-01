@@ -11,8 +11,8 @@ public unsafe struct latchedvars_t
     public float prevanimtime;
     public float sequencetime;
     public fixed byte prevseqblending[2];
-    public fixed float prevorigin[3];
-    public fixed float prevangles[3];
+    public vec3_t prevorigin;
+    public vec3_t prevangles;
 
     public int prevsequence;
     public float prevframe;

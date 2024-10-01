@@ -8,25 +8,25 @@ namespace GoldSrc.HLSDK.Native;
 
 public unsafe struct entvars_t
 {
-    public uint classname;
-    public uint globalname;
+    public string_t classname;
+    public string_t globalname;
 
-    public fixed float origin[3];
-    public fixed float oldorigin[3];
-    public fixed float velocity[3];
-    public fixed float basevelocity[3];
-    public fixed float clbasevelocity[3];  // Base velocity that was passed in to server physics so 
+    public vec3_t origin;
+    public vec3_t oldorigin;
+    public vec3_t velocity;
+    public vec3_t basevelocity;
+    public vec3_t clbasevelocity;  // Base velocity that was passed in to server physics so 
                                            //  client can predict conveyors correctly.  Server zeroes it, so we need to store here, too.
-    public fixed float movedir[3];
+    public vec3_t movedir;
 
-    public fixed float angles[3];          // Model angles
-    public fixed float avelocity[3];       // angle velocity (degrees per second)
-    public fixed float punchangle[3];      // auto-decaying view angle adjustment
-    public fixed float v_angle[3];     // Viewing angle (player only)
+    public vec3_t angles;          // Model angles
+    public vec3_t avelocity;       // angle velocity (degrees per second)
+    public vec3_t punchangle;      // auto-decaying view angle adjustment
+    public vec3_t v_angle;     // Viewing angle (player only)
 
     // For parametric entities
-    public fixed float endpos[3];
-    public fixed float startpos[3];
+    public vec3_t endpos;
+    public vec3_t startpos;
     public float impacttime;
     public float starttime;
 
@@ -37,16 +37,16 @@ public unsafe struct entvars_t
     public float yaw_speed;
 
     public int modelindex;
-    public uint model;
+    public string_t model;
 
     public int viewmodel;      // player's viewmodel
     public int weaponmodel;    // what other players see
 
-    public fixed float absmin[3];      // BB max translated to world coord
-    public fixed float absmax[3];      // BB max translated to world coord
-    public fixed float mins[3];       // local BB min
-    public fixed float maxs[3];       // local BB max
-    public fixed float size[3];        // maxs - mins
+    public vec3_t absmin;      // BB max translated to world coord
+    public vec3_t absmax;      // BB max translated to world coord
+    public vec3_t mins;       // local BB min
+    public vec3_t maxs;       // local BB max
+    public vec3_t size;    // maxs - mins
 
     public float ltime;
     public float nextthink;
@@ -75,7 +75,7 @@ public unsafe struct entvars_t
 
     public int rendermode;
     public float renderamt;
-    public fixed float rendercolor[3];
+    public vec3_t rendercolor;
     public int renderfx;
 
     public float health;
@@ -109,20 +109,20 @@ public unsafe struct entvars_t
     public int waterlevel;
     public int watertype;
 
-    public uint target;
-    public uint targetname;
-    public uint netname;
-    public uint message;
+    public string_t target;
+    public string_t targetname;
+    public string_t netname;
+    public string_t message;
 
     public float dmg_take;
     public float dmg_save;
     public float dmg;
     public float dmgtime;
 
-    public uint noise;
-    public uint noise1;
-    public uint noise2;
-    public uint noise3;
+    public string_t noise;
+    public string_t noise1;
+    public string_t noise2;
+    public string_t noise3;
 
     public float speed;
     public float air_finished;
@@ -161,10 +161,10 @@ public unsafe struct entvars_t
     public float fuser2;
     public float fuser3;
     public float fuser4;
-    public fixed float vuser1[3];
-    public fixed float vuser2[3];
-    public fixed float vuser3[3];
-    public fixed float vuser4[3];
+    public vec3_t vuser1;
+    public vec3_t vuser2;
+    public vec3_t vuser3;
+    public vec3_t vuser4;
     public edict_t* euser1;
     public edict_t* euser2;
     public edict_t* euser3;

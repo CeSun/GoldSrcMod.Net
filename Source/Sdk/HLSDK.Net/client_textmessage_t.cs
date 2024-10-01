@@ -17,6 +17,6 @@ public unsafe struct client_textmessage_t
     public float fadeout;
     public float holdtime;
     public float fxtime;
-    public byte* pName;
-    public byte* pMessage;
+    public sbyte* pName;
+    public sbyte* pMessage;
 }

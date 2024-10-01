@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
 
-public unsafe struct position_history_t
+public unsafe struct efrag_t
 {
-    public float animtime;
-
-    public vec3_t origin;
-    public vec3_t angle;
+    public mleaf_t *leaf;
+    public efrag_t* leafnext;
+    public cl_entity_t* entity;
+    public efrag_t* entnext;
 }

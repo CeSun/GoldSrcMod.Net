@@ -6,8 +6,8 @@ public unsafe struct entity_state_t
     public int number;
     public float msg_time;
     public int messagenum;
-    public fixed float origin[3];
-    public fixed float angles[3];
+    public vec3_t origin;
+    public vec3_t angles;
 
     public int modelindex;
     public int sequence;
@@ -28,9 +28,9 @@ public unsafe struct entity_state_t
     public int body;
     public fixed byte controller[4];
     public fixed byte blending[4];
-    public fixed float velocity[3];
-    public fixed float mins[3];
-    public fixed float maxs[3];
+    public vec3_t velocity;
+    public vec3_t mins;
+    public vec3_t maxs;
     public int aiment;
     public int owner;
     public float friction;
@@ -41,7 +41,7 @@ public unsafe struct entity_state_t
     public int spectator;
     public int weaponmodel;
     public int gaitsequence;
-    public fixed float basevelocity[3];
+    public vec3_t basevelocity;
     public int usehull;
     public int oldbuttons;
     public int onground;
@@ -49,8 +49,8 @@ public unsafe struct entity_state_t
     public float flFallVelocity;
     public float fov;
     public int weaponanim;
-    public fixed float startpos[3];
-    public fixed float endpos[3];
+    public vec3_t startpos;
+    public vec3_t endpos;
     public float impacttime;
     public float starttime;
     public int iuser1;
@@ -61,8 +61,8 @@ public unsafe struct entity_state_t
     public float fuser2;
     public float fuser3;
     public float fuser4;
-    public fixed float vuser1[3];
-    public fixed float vuser2[3];
-    public fixed float vuser3[3];
-    public fixed float vuser4[3];
+    public vec3_t vuser1;
+    public vec3_t vuser2;
+    public vec3_t vuser3;
+    public vec3_t vuser4;
 }

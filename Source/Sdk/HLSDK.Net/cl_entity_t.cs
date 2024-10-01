@@ -83,14 +83,17 @@ public unsafe struct cl_entity_t
     public mouth_t mouth;
     public latchedvars_t latched;
     public float lastmove;
-    public fixed float origin[3];
-    public fixed float angles[3];
-    public fixed float attachment[3 * 4];
+    public vec3_t origin;
+    public vec3_t angles;
+    public vec3_t attachment_0;
+    public vec3_t attachment_1;
+    public vec3_t attachment_2;
+    public vec3_t attachment_3;
     public int trivial_accept;
 
-    public nint model;      // todo
-    public nint efrag;      // todo
-    public nint topnode;      // todo
+    public model_t* model;
+    public efrag_t* efrag;
+    public model_t* topnode;
 
     public float syncbase;     // for client-side animations -- used by obsolete alias animation system, remove?
     public int visframe;

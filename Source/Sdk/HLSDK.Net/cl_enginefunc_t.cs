@@ -64,9 +64,9 @@ public unsafe struct cl_enginefunc_t
     public delegate* unmanaged[Cdecl]<float*, int*, int> PM_PointContents;
     public delegate* unmanaged[Cdecl]<float*, int> PM_WaterEntity;
     public delegate* unmanaged[Cdecl]<float*, float*, int, int, int, pmtrace_t*> PM_TraceLine;
-    public delegate* unmanaged[Cdecl]<sbyte*, int*, nint> CL_LoadModel; // todo
+    public delegate* unmanaged[Cdecl]<sbyte*, int*, model_t*> CL_LoadModel;
     public delegate* unmanaged[Cdecl]<int, cl_entity_t*, int> CL_CreateVisibleEntity;
-    public delegate* unmanaged[Cdecl]<int, nint> GetSpritePointer;  // todo
+    public delegate* unmanaged[Cdecl]<int, model_t*> GetSpritePointer;
     public delegate* unmanaged[Cdecl]<sbyte*, float, float*, void> pfnPlaySoundByNameAtLocation;
     public delegate* unmanaged[Cdecl]<int, sbyte*, ushort> pfnPrecacheEvent;
     public delegate* unmanaged[Cdecl]<int, edict_t*, ushort, float, float*, float*, float, float, int, int, int, int, void> pfnPlaybackEvent;
@@ -111,7 +111,7 @@ public unsafe struct cl_enginefunc_t
     public delegate* unmanaged[Cdecl]<uint, sbyte*> GetCmdFunctionName;
     public delegate* unmanaged[Cdecl]<float> hudGetClientOldTime;
     public delegate* unmanaged[Cdecl]<float> hudGetServerGravityValue;
-    public delegate* unmanaged[Cdecl]<int, nint> hudGetModelByIndex;  // todo
+    public delegate* unmanaged[Cdecl]<int, model_t*> hudGetModelByIndex;
     public delegate* unmanaged[Cdecl]<int, void> pfnSetFilterMode;
     public delegate* unmanaged[Cdecl]<float, float, float, void> pfnSetFilterColor;
     public delegate* unmanaged[Cdecl]<float, void> pfnSetFilterBrightness;

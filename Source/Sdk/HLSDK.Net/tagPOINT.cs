@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
 
+// todo
 public struct tagPOINT
 {
 }

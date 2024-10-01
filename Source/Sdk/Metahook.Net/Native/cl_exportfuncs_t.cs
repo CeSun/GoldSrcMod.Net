@@ -1,4 +1,4 @@
-﻿namespace FuckWorld.Metahook.Native;
+﻿namespace GoldSrc.Metahook.Native;
 
 public struct cl_exportfuncs_t
 {

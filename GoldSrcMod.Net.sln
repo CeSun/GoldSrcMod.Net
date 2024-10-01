@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35323.107
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metahook.Plugin", "Source\Metahook.Plugin\Metahook.Plugin.csproj", "{0C4549C4-B074-4C00-A06C-0EEBA88B4F01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sdk", "Sdk", "{6FB4A057-E3AF-470C-AB97-01737F787AE4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amxmodx.Net", "Source\Sdk\Amxmodx.Net\Amxmodx.Net.csproj", "{1279AC97-F2D2-40E4-9617-0D19D605BF53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLSDK.Net", "Source\Sdk\HLSDK.Net\HLSDK.Net.csproj", "{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metahook.Net", "Source\Sdk\Metahook.Net\Metahook.Net.csproj", "{9FDF4F22-EC65-4CF6-9795-A01C294354C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amxmodx.Module", "Source\Amxmodx.Module\Amxmodx.Module.csproj", "{58DEC5D8-3634-42F3-84E3-A64F9A29007A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C4549C4-B074-4C00-A06C-0EEBA88B4F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C4549C4-B074-4C00-A06C-0EEBA88B4F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C4549C4-B074-4C00-A06C-0EEBA88B4F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C4549C4-B074-4C00-A06C-0EEBA88B4F01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDF4F22-EC65-4CF6-9795-A01C294354C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDF4F22-EC65-4CF6-9795-A01C294354C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDF4F22-EC65-4CF6-9795-A01C294354C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDF4F22-EC65-4CF6-9795-A01C294354C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58DEC5D8-3634-42F3-84E3-A64F9A29007A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58DEC5D8-3634-42F3-84E3-A64F9A29007A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58DEC5D8-3634-42F3-84E3-A64F9A29007A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58DEC5D8-3634-42F3-84E3-A64F9A29007A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1279AC97-F2D2-40E4-9617-0D19D605BF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1279AC97-F2D2-40E4-9617-0D19D605BF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1279AC97-F2D2-40E4-9617-0D19D605BF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1279AC97-F2D2-40E4-9617-0D19D605BF53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8D6C1BD9-8E4D-44F0-8AA2-68ED20846A4A} = {6FB4A057-E3AF-470C-AB97-01737F787AE4}
+		{9FDF4F22-EC65-4CF6-9795-A01C294354C6} = {6FB4A057-E3AF-470C-AB97-01737F787AE4}
+		{1279AC97-F2D2-40E4-9617-0D19D605BF53} = {6FB4A057-E3AF-470C-AB97-01737F787AE4}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D9C6DA8-61A6-48AA-B92B-EB2C29027315}
+	EndGlobalSection
+EndGlobal

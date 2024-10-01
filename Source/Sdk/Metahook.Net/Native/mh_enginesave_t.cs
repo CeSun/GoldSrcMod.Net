@@ -1,6 +1,6 @@
-﻿using FuckWorld.HLSDK.Native;
+﻿using GoldSrc.HLSDK.Native;
 
-namespace FuckWorld.Metahook.Native;
+namespace GoldSrc.Metahook.Native;
 
 public unsafe struct mh_enginesave_t
 {

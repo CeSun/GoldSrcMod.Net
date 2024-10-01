@@ -1,4 +1,4 @@
-﻿namespace FuckWorld.Metahook.Native;
+﻿namespace GoldSrc.Metahook.Native;
 
 public struct mh_interface_t
 {

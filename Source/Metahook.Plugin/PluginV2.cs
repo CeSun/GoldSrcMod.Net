@@ -1,5 +1,4 @@
-﻿using FuckWorld.Metahook.Native;
-using Metahook.Plugin;
+﻿using GoldSrc.Metahook.Native;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-namespace FuckWorld.Metahook.Native;
+﻿namespace GoldSrc.Metahook.Native;
 
 public struct metahook_api_t
 {

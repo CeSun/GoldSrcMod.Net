@@ -4,8 +4,12 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-	<PublishAot>true</PublishAot>
-	<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>GoldSrc.Metahook</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HLSDK.Net\HLSDK.Net.csproj" />
+  </ItemGroup>
 
 </Project>

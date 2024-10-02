@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Metahook.Plugin.Template</id>
-    <version>1.0.1-fix-alpha</version>
+    <version>1.0.1-fix2-alpha</version>
     <description>Metahook Plugin</description>
     <authors>CeSun</authors>
     <packageTypes>

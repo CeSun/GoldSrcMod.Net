@@ -26,7 +26,7 @@ public unsafe static class Exportfuncs
     {
         if (count < 10)
         {
-            using var str = $"Hello World!!!!!(hit:{count + 1})\n".GetNativeString();
+            using var str = $"Fuck World!!!!! 哈哈哈(hit:{count})\n".GetNativeString();
             gEngfuncs.Con_Printf(str);
             count++;
         }

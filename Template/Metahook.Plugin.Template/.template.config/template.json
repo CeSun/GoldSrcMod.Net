@@ -1,0 +1,9 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "CeSun",
+    "classifications": [ "GoldSrc", "Plugin", "Metahook" ],
+    "identity": "Metahook.Plugin.Template",
+    "name": "GoldSrc Client Metahook Plugin",
+    "shortName": "MPT",
+    "sourceName": "Metahook.Plugin.Template"
+  }

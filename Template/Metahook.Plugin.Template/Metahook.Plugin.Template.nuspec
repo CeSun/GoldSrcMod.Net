@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Metahook.Plugin.Template</id>
-    <version>1.0.0-alpha</version>
+    <version>1.0.1-fix-alpha</version>
     <description>Metahook Plugin</description>
     <authors>CeSun</authors>
     <packageTypes>
@@ -10,6 +10,6 @@
     </packageTypes>
   </metadata>
     <files>
-    <file src=".\**" target="Metahook.Plugin.Template" exclude="**\bin\**;**\obj\**;.\.vs\**;" />
+    <file src=".\**" target="Metahook.Plugin.Template" exclude="**\bin\**;**\obj\**;.\.vs\**;**\Metahook.Plugin.Template.csproj.user;**\Properties\**;.\Metahook.Plugin.Template.nuspec" />
   </files>
 </package>

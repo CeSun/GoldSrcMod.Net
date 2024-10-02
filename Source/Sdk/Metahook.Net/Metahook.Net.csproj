@@ -1,21 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>GoldSrc.Metahook</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>1.0.0-alpha</Version>
+	<Version>$(NugetVersion)</Version>
     <Authors>CeSun</Authors>
+	<Description>Metahook for .Net</Description>
     <RepositoryUrl>https://github.com/CeSun/GoldSrcMod.Net</RepositoryUrl>
     <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HLSDK.Net\HLSDK.Net.csproj" />
+    <ProjectReference Include="..\HLSDK.Net\HLSDK.Net.csproj"  />
   </ItemGroup>
 
 </Project>

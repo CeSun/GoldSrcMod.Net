@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RootNamespace>GoldSrc.HLSDK</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Title>HLSDK.Net</Title>
-    <Version>1.0.0-alpha</Version>
+	<Version>$(NugetVersion)</Version>
     <Authors>CeSun</Authors>
     <Description>HLSDK for .Net</Description>
     <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>

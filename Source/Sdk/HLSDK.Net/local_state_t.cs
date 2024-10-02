@@ -5,9 +5,73 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
-
-// todo
 public unsafe struct local_state_t
-{
-    
+{	
+    public entity_state_t playerstate;
+	public clientdata_t   client;
+    public weapon_data_t weapondata_0;
+    public weapon_data_t weapondata_1;
+    public weapon_data_t weapondata_2;
+    public weapon_data_t weapondata_3;
+    public weapon_data_t weapondata_4;
+    public weapon_data_t weapondata_5;
+    public weapon_data_t weapondata_6;
+    public weapon_data_t weapondata_7;
+    public weapon_data_t weapondata_8;
+    public weapon_data_t weapondata_9;
+    public weapon_data_t weapondata_10;
+    public weapon_data_t weapondata_11;
+    public weapon_data_t weapondata_12;
+    public weapon_data_t weapondata_13;
+    public weapon_data_t weapondata_14;
+    public weapon_data_t weapondata_15;
+    public weapon_data_t weapondata_16;
+    public weapon_data_t weapondata_17;
+    public weapon_data_t weapondata_18;
+    public weapon_data_t weapondata_19;
+    public weapon_data_t weapondata_20;
+    public weapon_data_t weapondata_21;
+    public weapon_data_t weapondata_22;
+    public weapon_data_t weapondata_23;
+    public weapon_data_t weapondata_24;
+    public weapon_data_t weapondata_25;
+    public weapon_data_t weapondata_26;
+    public weapon_data_t weapondata_27;
+    public weapon_data_t weapondata_28;
+    public weapon_data_t weapondata_29;
+    public weapon_data_t weapondata_30;
+    public weapon_data_t weapondata_31;
+    public weapon_data_t weapondata_32;
+    public weapon_data_t weapondata_33;
+    public weapon_data_t weapondata_34;
+    public weapon_data_t weapondata_35;
+    public weapon_data_t weapondata_36;
+    public weapon_data_t weapondata_37;
+    public weapon_data_t weapondata_38;
+    public weapon_data_t weapondata_39;
+    public weapon_data_t weapondata_40;
+    public weapon_data_t weapondata_41;
+    public weapon_data_t weapondata_42;
+    public weapon_data_t weapondata_43;
+    public weapon_data_t weapondata_44;
+    public weapon_data_t weapondata_45;
+    public weapon_data_t weapondata_46;
+    public weapon_data_t weapondata_47;
+    public weapon_data_t weapondata_48;
+    public weapon_data_t weapondata_49;
+    public weapon_data_t weapondata_50;
+    public weapon_data_t weapondata_51;
+    public weapon_data_t weapondata_52;
+    public weapon_data_t weapondata_53;
+    public weapon_data_t weapondata_54;
+    public weapon_data_t weapondata_55;
+    public weapon_data_t weapondata_56;
+    public weapon_data_t weapondata_57;
+    public weapon_data_t weapondata_58;
+    public weapon_data_t weapondata_59;
+    public weapon_data_t weapondata_60;
+    public weapon_data_t weapondata_61;
+    public weapon_data_t weapondata_62;
+    public weapon_data_t weapondata_63;
+
 }

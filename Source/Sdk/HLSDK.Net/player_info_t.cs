@@ -7,6 +7,6 @@ using System.Threading.Tasks;
 namespace GoldSrc.HLSDK.Native;
 
 // todo hlsdk没有找到定义
-public struct tagPOINT
+public unsafe struct player_info_t
 {
 }

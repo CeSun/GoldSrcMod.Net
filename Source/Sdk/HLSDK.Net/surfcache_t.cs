@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
 
-// todo
+// todo hlsdk没有找到定义
 public unsafe struct surfcache_t
 {
 

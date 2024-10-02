@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.HLSDK.Native;
 
-// todo
 public unsafe struct cl_exportfuncs_t
 {
     public delegate* unmanaged[Cdecl]<cl_enginefunc_t*, int, int> Initialize;

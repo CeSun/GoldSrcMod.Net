@@ -1,6 +1,80 @@
 ﻿namespace GoldSrc.HLSDK.Native;
 
-public struct efx_api_t
+public unsafe struct efx_api_t
 {
-    // todo
+    public delegate* unmanaged[Cdecl]<delegate* unmanaged[Cdecl]<particle_t*, float, void>, particle_t*> R_AllocParticle;
+    public delegate* unmanaged[Cdecl]<float*, void> R_BlobExplosion;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, void> R_Blood;
+    public delegate* unmanaged[Cdecl]<float*, int, int, int, float, void> R_BloodSprite;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, void> R_BloodStream;
+    public delegate* unmanaged[Cdecl]<float*, float*, float*, float, float, int, int, sbyte, void> R_BreakModel;
+    public delegate* unmanaged[Cdecl]<float*, float*, float, int, int, float, void> R_Bubbles;
+    public delegate* unmanaged[Cdecl]<float*, float*, float, int, int, float, void> R_BubbleTrail;
+    public delegate* unmanaged[Cdecl]<float*, void> R_BulletImpactParticles;
+    public delegate* unmanaged[Cdecl]<cl_entity_t*, void> R_EntityParticles;
+    public delegate* unmanaged[Cdecl]<float*, int, float, float, int, void> R_Explosion;
+    public delegate* unmanaged[Cdecl]<cl_entity_t*, int, int, void> R_FizzEffect;
+    public delegate* unmanaged[Cdecl]<float*, int, int, int, int, float, void> R_FireField;
+    public delegate* unmanaged[Cdecl]<float*, void> R_FlickerParticles;
+    public delegate* unmanaged[Cdecl]<float*, int, int, void> R_FunnelSprite;
+    public delegate* unmanaged[Cdecl]<float*, float, int, float, void> R_Implosion;
+    public delegate* unmanaged[Cdecl]<float*, int, void> R_LargeFunnel;
+    public delegate* unmanaged[Cdecl]<float*, void> R_LavaSplash;
+    public delegate* unmanaged[Cdecl]<float*, float*, float*,int, int, int*, void> R_MultiGunshot;
+    public delegate* unmanaged[Cdecl]<float*, int, void> R_MuzzleFlash;
+    public delegate* unmanaged[Cdecl]<float*, float*, byte, byte, byte, float, void> R_ParticleBox;
+    public delegate* unmanaged[Cdecl]<float*,int, int, float, void> R_ParticleBurst;
+    public delegate* unmanaged[Cdecl]<float*, void> R_ParticleExplosion;
+    public delegate* unmanaged[Cdecl]<float*, int, int, void> R_ParticleExplosion2;
+    public delegate* unmanaged[Cdecl]<float*, float*, byte, byte, byte, float, void> R_ParticleLine;
+    public delegate* unmanaged[Cdecl]<int, int, int, int, void> R_PlayerSprites;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, int, delegate* unmanaged[Cdecl]<tempent_t*, pmtrace_t*, void>, void> R_Projectile;
+    public delegate* unmanaged[Cdecl]<float*, void> R_RicochetSound;
+    public delegate* unmanaged[Cdecl]<float*, model_t*, float, float, void> R_RicochetSprite;
+    public delegate* unmanaged[Cdecl]<float*, void> R_RocketFlare;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, void> R_RocketTrail;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, void> R_RunParticleEffect;
+    public delegate* unmanaged[Cdecl]<float*, float*, void> R_ShowLine;
+    public delegate* unmanaged[Cdecl]<float*, int, int, int, void> R_SparkEffect;
+    public delegate* unmanaged[Cdecl]<float*, void> R_SparkShower;
+    public delegate* unmanaged[Cdecl]<float*, int, int, int, void> R_SparkStreaks;
+    public delegate* unmanaged[Cdecl]<float*, int, int, int, int, int, void> R_Spray;
+    public delegate* unmanaged[Cdecl]<TEMPENTITY*, float, int, void> R_Sprite_Explode;
+    public delegate* unmanaged[Cdecl]<TEMPENTITY*, float, void> R_Sprite_Smoke;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, int, int, void> R_Sprite_Spray;
+    public delegate* unmanaged[Cdecl]<int, float*, float*, int, int, float, float, float, int, float, void > R_Sprite_Trail;
+    public delegate* unmanaged[Cdecl]<TEMPENTITY*, float, void> R_Sprite_WallPuff;
+    public delegate* unmanaged[Cdecl]<float*, float*, void> R_TracerEffect;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, int, float, int, int, void> R_StreakSplash;
+    public delegate* unmanaged[Cdecl]<float*, float*, float, int, float, byte, delegate* unmanaged[Cdecl]<particle_t*, void>, void> R_UserTracerParticle;
+    public delegate* unmanaged[Cdecl]<float*, float*, float, particle_t*> R_TracerParticles;
+    public delegate* unmanaged[Cdecl]<float*, void> R_TeleportSplash;
+    public delegate* unmanaged[Cdecl]<float*, float, float, int, int, void> R_TempSphereModel;
+    public delegate* unmanaged[Cdecl]<float*, float*, float*, float, int, int, TEMPENTITY*> R_TempModel;
+    public delegate* unmanaged[Cdecl]<float*, int, float, TEMPENTITY*> R_DefaultSprite;
+    public delegate* unmanaged[Cdecl]<float*, float*, float, int, int, int, float, float, int, TEMPENTITY*> R_TempSprite;
+    public delegate* unmanaged[Cdecl]<int, int> Draw_DecalIndex;
+    public delegate* unmanaged[Cdecl]<sbyte*, int> Draw_DecalIndexFromName;
+    public delegate* unmanaged[Cdecl]<int, int, int, float*, int, void> R_DecalShoot;
+    public delegate* unmanaged[Cdecl]<int, int, float, float, void> R_AttachTentToPlayer;
+    public delegate* unmanaged[Cdecl]<int, void> R_KillAttachedTents;
+    public delegate* unmanaged[Cdecl]<int, float*, float*, int, float, float, float, float, float, int, float, float, float, float, BEAM*> R_BeamCirclePoints;
+    public delegate* unmanaged[Cdecl]<int, float*, int, float, float, float, float, float, int, float, float, float, float, BEAM*> R_BeamEntPoint;
+    public delegate* unmanaged[Cdecl]<int, int, int, float, float, float, float, float, int, float, float, float, float, BEAM*> R_BeamEnts;
+    public delegate* unmanaged[Cdecl]<int, int, float, float, float, float, float, float, BEAM*> R_BeamFollow;
+    public delegate* unmanaged[Cdecl]<int, void> R_BeamKill;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, float, float, float, float, float, BEAM*> R_BeamLightning;
+    public delegate* unmanaged[Cdecl]<float*, float*, int, float, float, float, float, float, int, float, float, float, float, BEAM*> R_BeamPoints;
+    public delegate* unmanaged[Cdecl]<int, int, int, float, float, float, float, float, int, float, float, float, float, BEAM*> R_BeamRing;
+    public delegate* unmanaged[Cdecl]<int, dlight_t*> CL_AllocDlight;
+    public delegate* unmanaged[Cdecl]<int, dlight_t*> CL_AllocElight;
+    public delegate* unmanaged[Cdecl]<float, model_t*, TEMPENTITY*> CL_TempEntAlloc;
+    public delegate* unmanaged[Cdecl]<float, TEMPENTITY> CL_TempEntAllocNoModel;
+    public delegate* unmanaged[Cdecl]<float, model_t*, TEMPENTITY*> CL_TempEntAllocHigh;
+    public delegate* unmanaged[Cdecl]<float*, model_t*, int,delegate* unmanaged[Cdecl]<tempent_t*, float, float, void>, TEMPENTITY*> CL_TentEntAllocCustom;
+    public delegate* unmanaged[Cdecl]<short*, short, void> R_GetPackedColor;
+    public delegate* unmanaged[Cdecl]<byte, byte, byte, short> R_LookupColor;
+    public delegate* unmanaged[Cdecl]<int, void> R_DecalRemoveAll;
+    public delegate* unmanaged[Cdecl]<int, int, int, float*, int, float, void> R_FireCustomDecal;
 }
+

@@ -26,7 +26,7 @@ dotnet new install Metahook.Plugin.Template
 
    2.1 打开VS，新建项目，搜索Metahook，并创建
    
-   2.2 或者执行命令行创建: `dotnet new MPP -o HelloMetahook`
+   2.2 或者执行命令行创建: `dotnet new MPT -o HelloMetahook`
    
 ### 编译
 必须使用dotnet publish命令发布，或者使用ide的发布功能，选择[独立] [win-x86] 发布。

@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static Plugin.Global;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Plugin;
 public unsafe static class Exportfuncs
@@ -25,12 +26,26 @@ public unsafe static class Exportfuncs
     {
         if (count < 10)
         {
-            var str = $"Fuck World!!!!! (hit:{count})\n";
-            var cstr = (sbyte*)Marshal.StringToHGlobalAnsi(str);
-            gEngfuncs.Con_Printf(cstr);
-            Marshal.FreeHGlobal((nint)cstr);
+            using var str = $"Fuck World!!!!! 哈哈哈(hit:{count})\n".GetNativeString();
+            gEngfuncs.Con_Printf(str);
             count++;
         }
         return gExportfuncs.HUD_Redraw(time, intermission);
     }
+}
+
+
+public static class StringHelper
+{
+    public unsafe static NativeString GetNativeString(this string s) => new NativeString() {  c_str = (sbyte*)Marshal.StringToHGlobalAnsi(s) };
+
+}
+
+public unsafe struct NativeString : IDisposable
+{
+    internal sbyte* c_str;
+    public void Dispose() => Marshal.FreeHGlobal((nint)c_str);
+    public static implicit operator sbyte*(NativeString d) => d.c_str;
+    public static implicit operator byte*(NativeString d) => (byte*)d.c_str;
+    public static implicit operator nint(NativeString d) => (nint)d.c_str;
 }

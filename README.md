@@ -22,3 +22,6 @@ AmxModX模块：不可用，正在消极开发中（amxmodx的模块需要写的
 ```shell
 dotnet publish .\Source\Metahook.Plugin\Metahook.Plugin.csproj -c Release -r win-x86 -o ./build
 ```
+
+### 调试：
+ [调试文档](Document/Debug.md)。

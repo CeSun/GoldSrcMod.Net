@@ -2,7 +2,7 @@
 
 public struct mh_interface_t
 {
-    public nint CommandLine;
-    public nint FileSystem;
-    public nint Registry;
+    public ICommandLine CommandLine;
+    public nint FileSystem; //todo
+    public IRegistry Registry;
 }

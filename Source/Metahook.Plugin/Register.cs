@@ -8,13 +8,11 @@ namespace Plugin;
 
 public static class Register
 {
-    static Dictionary<string, Func<string, (nint, int)>> RegisterDictionary = [];
 
     [UnmanagedCallersOnly(EntryPoint = "CreateInterface", CallConvs = [typeof(CallConvCdecl)])]
     public static unsafe nint CreateInterface(nint ptr, int* num)
     {
         string? frameworkVersion = Marshal.PtrToStringAnsi(ptr);
-
         if (frameworkVersion == null)
             return IntPtr.Zero;
         nint pPlugin = IntPtr.Zero;
@@ -28,7 +26,7 @@ public static class Register
                 (pPlugin, result) = GetV1PluginInstance(frameworkVersion);
                 break;
         }
-        return ptr;
+        return pPlugin;
     }
 
 
@@ -72,6 +70,6 @@ public static class Register
     {
         public nint VirtualFunctionTable;
     }
-
 }
+
 

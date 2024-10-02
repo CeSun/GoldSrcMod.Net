@@ -22,6 +22,9 @@ public unsafe static class PluginV2
     {
         gExportfuncs = *pExportFunc;
 
+        pExportFunc->Initialize = &Exportfuncs.Initialize;
+        pExportFunc->HUD_Init = &Exportfuncs.HUD_Init;
+        pExportFunc->HUD_Redraw = &Exportfuncs.HUD_Redraw;
     }
 
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvThiscall)])]

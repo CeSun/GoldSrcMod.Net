@@ -1,8 +1,8 @@
 ﻿namespace GoldSrc.Metahook.Native;
 
-public struct mh_interface_t
+public unsafe struct mh_interface_t
 {
-    public ICommandLine CommandLine;
+    public ICommandLine* CommandLine;
     public nint FileSystem; //todo
-    public IRegistry Registry;
+    public IRegistry* Registry;
 }

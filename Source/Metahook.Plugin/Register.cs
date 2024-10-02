@@ -1,5 +1,6 @@
 ﻿using GoldSrc.Metahook.Native;
 using GoldSrc.Metahook;
+using GoldSrc.HLSDK.Native;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 

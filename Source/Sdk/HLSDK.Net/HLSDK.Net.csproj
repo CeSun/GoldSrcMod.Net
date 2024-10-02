@@ -6,6 +6,14 @@
     <Nullable>enable</Nullable>
     <RootNamespace>GoldSrc.HLSDK</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Title>HLSDK.Net</Title>
+    <Version>1.0.0-alpha</Version>
+    <Authors>CeSun</Authors>
+    <Description>HLSDK for .Ney</Description>
+    <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CeSun/GoldSrcMod.Net</RepositoryUrl>
+    <PackageTags>hlsdk</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
 </Project>

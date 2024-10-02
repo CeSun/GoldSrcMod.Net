@@ -6,6 +6,12 @@
     <Nullable>enable</Nullable>
     <RootNamespace>GoldSrc.Metahook</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>$(AssemblyName)</Title>
+    <Version>1.0.0-alpha</Version>
+    <Authors>CeSun</Authors>
+    <RepositoryUrl>https://github.com/CeSun/GoldSrcMod.Net</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>

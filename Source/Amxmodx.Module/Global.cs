@@ -1,4 +1,5 @@
 ﻿using GoldSrc.Amxmodx.Native;
+using GoldSrc.HLSDK;
 using GoldSrc.HLSDK.Native;
 using GoldSrc.MetaMod.Native;
 using System.Runtime.CompilerServices;
@@ -41,19 +42,45 @@ public unsafe static class Global
     public static gamedll_funcs_t* gpGamedllFuncs;    // gameDLL function tables
     public static mutil_funcs_t* gpMetaUtilFuncs;
 
-    public static plugin_info_t* Plugin_info; // todo
+    public static plugin_info_t* Plugin_info;
     public static META_FUNCTIONS g_MetaFunctions_Table;
 
-    public static amxx_module_info_t g_ModuleInfo; // todo
+    public static amxx_module_info_t g_ModuleInfo;
+
+    public static delegate* unmanaged[Cdecl]<sbyte*, void*> g_fn_RequestFunction;
+
     static Global()
     {
         Plugin_info = (plugin_info_t*)Marshal.AllocHGlobal(sizeof(mutil_funcs_t));
+        Plugin_info->ifvers = META_INTERFACE_VERSION.GetNativeString();
+        Plugin_info->name = "AmxxModule.Net".GetNativeString();
+        Plugin_info->version = "1.0.0".GetNativeString();
+        Plugin_info->date = DateTime.Now.ToString().GetNativeString();
+        Plugin_info->author = "CeSun".GetNativeString();
+        Plugin_info->url = "https://github.com/CeSun/GoldSrcMod.Net".GetNativeString();
+        Plugin_info->logtag = "AmxxModule.Net".GetNativeString();
+        Plugin_info->loadable = PLUG_LOADTIME.PT_ANYTIME;
+        Plugin_info->unloadable = PLUG_LOADTIME.PT_ANYTIME;
+
+        g_ModuleInfo.name = Plugin_info->name;
+        g_ModuleInfo.author = Plugin_info->author;
+        g_ModuleInfo.version = Plugin_info->version;
+        g_ModuleInfo.reload = 1;
+        g_ModuleInfo.library = "AmxxModule.Net".GetNativeString();
+        g_ModuleInfo.libclass = "".GetNativeString();
+
+
+
     }
     public const int False = 0;
     public const int True = 1;
 
     public const int AMXX_OK = 0;           /* no error */
-    public const int AMXX_IFVERS      = 1;       /* interface version */
+    public const int AMXX_IFVERS = 1;       /* interface version */
     public const int AMXX_PARAM = 2;        /* Invalid parameter */
-    public const int AMXX_FUNC_NOT_PRESENT = 3;		/* Function not present */
+    public const int AMXX_FUNC_NOT_PRESENT = 3;     /* Function not present */
+
+
+    public const int AMXX_GAME_OK = 0;          /* This module can load on the current game mod. */
+    public const int AMXX_GAME_BAD = 1;			/* This module can not load on the current game mod. */
 }

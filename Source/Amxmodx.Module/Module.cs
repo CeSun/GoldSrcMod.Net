@@ -175,13 +175,21 @@ public unsafe static class Module
     [UnmanagedCallersOnly(EntryPoint = "AMXX_CheckGame", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_CheckGame(nint game)
     {
-        return 1;
+        return AMXX_GAME_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Attach", CallConvs = [typeof(CallConvCdecl)])]
-    public static int AMXX_Attach(nint reqFnptrFunc)
+    public static int AMXX_Attach(delegate* unmanaged[Cdecl]<sbyte*, void*> reqFnptrFunc)
     {
-        return 1;
+        if (reqFnptrFunc == null)
+            return AMXX_PARAM;
+        g_fn_RequestFunction = reqFnptrFunc;
+        using (var funName = "BuildPathname".GetNativeString())
+        {
+
+        }
+
+        return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Detach", CallConvs = [typeof(CallConvCdecl)])]

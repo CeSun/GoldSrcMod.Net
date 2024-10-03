@@ -10,7 +10,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sdk\HLSDK.Net\HLSDK.Net.csproj" />
 		<ProjectReference Include="..\Sdk\Amxmodx.Net\Amxmodx.Net.csproj" />
 	</ItemGroup>
 

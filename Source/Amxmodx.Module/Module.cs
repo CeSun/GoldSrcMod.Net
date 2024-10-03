@@ -1,4 +1,5 @@
-﻿using GoldSrc.HLSDK;
+﻿using GoldSrc.Amxmodx.Native;
+using GoldSrc.HLSDK;
 using GoldSrc.HLSDK.Native;
 using GoldSrc.MetaMod.Native;
 using System.Runtime.CompilerServices;
@@ -108,34 +109,67 @@ public unsafe static class Module
         }
         gpMetaUtilFuncs = pMetaUtilFuncs;
         *pPlugInfo = Plugin_info;
-        
 
-        return 1;
+        var frameVersion = Marshal.PtrToStringAnsi((nint)ifvers)!;
+        var list = frameVersion.Split(":");
+        var mmajor = int.Parse(list[0]);
+        var mminor = int.Parse(list[1]);
+
+        list = META_INTERFACE_VERSION.Split(":");
+        var pmajor = int.Parse(list[0]);
+        var pminor = int.Parse(list[1]);
+
+        if (pmajor > mmajor || (pmajor == mmajor && pminor > mminor))
+            return False;
+        else if (pmajor < mmajor)
+            return False;
+        return True;
     }
 
 
     [UnmanagedCallersOnly(EntryPoint = "Meta_Attach", CallConvs = [typeof(CallConvCdecl)])]
-    public static int Meta_Attach(PLUG_LOADTIME now, nint pFunctionTable, nint pMGlobals, nint pGamedllFuncs)
+    public static int Meta_Attach(PLUG_LOADTIME now, META_FUNCTIONS* pFunctionTable, meta_globals_t* pMGlobals, gamedll_funcs_t* pGamedllFuncs)
     {
-        return 1;
+        if ((int)now > (int)Plugin_info->loadable)
+            return False;
+        if (pMGlobals == null)
+            return False;
+        gpMetaGlobals = pMGlobals;
+        if (pFunctionTable == null)
+            return False;
+        *pFunctionTable = g_MetaFunctions_Table;
+        gpGamedllFuncs = pGamedllFuncs;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "Meta_Detach", CallConvs = [typeof(CallConvCdecl)])]
     public static int Meta_Detach(PLUG_LOADTIME now, PL_UNLOAD_REASON reason)
     {
-        return 1;
+        if (now > Plugin_info->unloadable && reason != PL_UNLOAD_REASON.PNL_CMD_FORCED)
+            return False;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GiveFnptrsToDll", CallConvs = [typeof(CallConvStdcall)])]
-    public static void GiveFnptrsToDll(nint pengfuncsFromEngine, nint pGlobals)
+    public static void GiveFnptrsToDll(enginefuncs_t* pengfuncsFromEngine, globalvars_t* pGlobals)
     {
-
+        g_engfuncs = *pengfuncsFromEngine;
+        gpGlobals = pGlobals;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Query", CallConvs = [typeof(CallConvCdecl)])]
-    public static int AMXX_Query(nint interfaceVersion, nint moduleInfo)
+    public static int AMXX_Query(int* interfaceVersion, amxx_module_info_t* moduleInfo)
     {
-        return 1;
+        if (interfaceVersion == null || moduleInfo == null)
+            return AMXX_PARAM;
+        if (*interfaceVersion != AMXX_INTERFACE_VERSION)
+        {
+            *interfaceVersion = AMXX_INTERFACE_VERSION;
+            return AMXX_IFVERS;
+        }
+        *moduleInfo = g_ModuleInfo;
+
+        return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_CheckGame", CallConvs = [typeof(CallConvCdecl)])]
@@ -153,13 +187,13 @@ public unsafe static class Module
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Detach", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_Detach()
     {
-        return 1;
+        return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_PluginsLoaded", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_PluginsLoaded()
     {
-        return 1;
+        return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_PluginsUnloaded", CallConvs = [typeof(CallConvCdecl)])]
@@ -172,16 +206,5 @@ public unsafe static class Module
     {
 
     }
-
-}
-
-
-public struct PLUG_LOADTIME
-{
-
-}
-
-public struct PL_UNLOAD_REASON
-{
 
 }

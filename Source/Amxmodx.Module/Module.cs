@@ -1,49 +1,115 @@
-﻿using System.Runtime.CompilerServices;
+﻿using GoldSrc.HLSDK;
+using GoldSrc.HLSDK.Native;
+using GoldSrc.MetaMod.Native;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using static Module.Global;
 
 namespace Module;
 
-public static class Module
+public unsafe static class Module
 {
     [UnmanagedCallersOnly(EntryPoint = "GetEntityAPI2", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetEntityAPI2(nint pFunctionTable, nint interfaceVersion)
+    public static int GetEntityAPI2(DLL_FUNCTIONS* pFunctionTable, int* interfaceVersion)
     {
-        return 1;
+        if (pFunctionTable == null)
+            return False;
+        if (*interfaceVersion != INTERFACE_VERSION)
+        {
+            *interfaceVersion = INTERFACE_VERSION;
+            return False;
+        }
+        *pFunctionTable = g_EntityAPI_Table;
+        g_pFunctionTable = pFunctionTable;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetEntityAPI2_Post", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetEntityAPI2_Post(nint pFunctionTable, nint interfaceVersion)
+    public static int GetEntityAPI2_Post(DLL_FUNCTIONS* pFunctionTable, int* interfaceVersion)
     {
-        return 1;
+        if (pFunctionTable == null)
+            return False;
+        if (*interfaceVersion != INTERFACE_VERSION)
+        {
+            *interfaceVersion = INTERFACE_VERSION;
+            return False;
+        }
+        *pFunctionTable = g_EntityAPI_Post_Table;
+        g_pFunctionTable_Post = pFunctionTable;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetEngineFunctions", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetEngineFunctions(nint pFunctionTable, nint interfaceVersion)
+    public static int GetEngineFunctions(enginefuncs_t* pengfuncsFromEngine, int* interfaceVersion)
     {
-        return 1;
+        if (pengfuncsFromEngine == null)
+            return False;
+        if (*interfaceVersion != ENGINE_INTERFACE_VERSION)
+        {
+            *interfaceVersion = ENGINE_INTERFACE_VERSION;
+            return False;
+        }
+        *pengfuncsFromEngine = g_EngineFuncs_Table;
+        g_pengfuncsTable = pengfuncsFromEngine;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetEngineFunctions_Post", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetEngineFunctions_Post(nint pFunctionTable, nint interfaceVersion)
+    public static int GetEngineFunctions_Post(enginefuncs_t* pengfuncsFromEngine, int* interfaceVersion)
     {
-        return 1;
+        if (pengfuncsFromEngine == null)
+            return False;
+        if (*interfaceVersion != ENGINE_INTERFACE_VERSION)
+        {
+            *interfaceVersion = ENGINE_INTERFACE_VERSION;
+            return False;
+        }
+        *pengfuncsFromEngine = g_EngineFuncs_Post_Table;
+        g_pEngineFuncs_Post = pengfuncsFromEngine;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetNewDLLFunctions", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetNewDLLFunctions(nint pNewFunctionTable, nint interfaceVersion)
+    public static int GetNewDLLFunctions(NEW_DLL_FUNCTIONS* pNewFunctionTable, int* interfaceVersion)
     {
-        return 1;
+        if (pNewFunctionTable == null)
+            return False;
+        if (*interfaceVersion != NEW_DLL_FUNCTIONS_VERSION)
+        {
+            *interfaceVersion = NEW_DLL_FUNCTIONS_VERSION;
+            return False;
+        }
+        *pNewFunctionTable = g_NewFuncs_Table;
+        g_pNewFunctionsTable = pNewFunctionTable;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetNewDLLFunctions_Post", CallConvs = [typeof(CallConvCdecl)])]
-    public static int GetNewDLLFunctions_Post(nint pNewFunctionTable, nint interfaceVersion)
+    public static int GetNewDLLFunctions_Post(NEW_DLL_FUNCTIONS* pNewFunctionTable, int* interfaceVersion)
     {
-        return 1;
+        if (pNewFunctionTable == null)
+            return False;
+        if (*interfaceVersion != NEW_DLL_FUNCTIONS_VERSION)
+        {
+            *interfaceVersion = NEW_DLL_FUNCTIONS_VERSION;
+            return False;
+        }
+        *pNewFunctionTable = g_NewFuncs_Post_Table;
+        g_pNewFunctionsTable_Post = pNewFunctionTable;
+        return True;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "Meta_Query", CallConvs = [typeof(CallConvCdecl)])]
-    public static int Meta_Query(nint ifvers, nint pPlugInfo, nint pMetaUtilFuncs)
+    public static int Meta_Query(sbyte* ifvers, plugin_info_t** pPlugInfo, mutil_funcs_t* pMetaUtilFuncs)
     {
+        if (pMetaUtilFuncs == null)
+        {
+            return False;
+        }
+        gpMetaUtilFuncs = pMetaUtilFuncs;
+        *pPlugInfo = Plugin_info;
+        
+
         return 1;
     }
 
@@ -80,8 +146,8 @@ public static class Module
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Attach", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_Attach(nint reqFnptrFunc)
-    { 
-        return 1; 
+    {
+        return 1;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Detach", CallConvs = [typeof(CallConvCdecl)])]

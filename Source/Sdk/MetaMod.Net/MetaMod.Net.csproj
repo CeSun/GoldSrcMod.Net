@@ -4,13 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>GoldSrc.Amxmodx</RootNamespace>
-	  <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RootNamespace>GoldSrc.MetaMod</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HLSDK.Net\HLSDK.Net.csproj" />
-    <ProjectReference Include="..\MetaMod.Net\MetaMod.Net.csproj" />
   </ItemGroup>
 
 </Project>

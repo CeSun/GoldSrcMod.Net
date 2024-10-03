@@ -13,6 +13,10 @@ public struct qboolean
 {
     public int value;
 
+    public qboolean(bool value)
+    {
+        this.value = value ? 1 : 0;
+    }
     public static bool operator==(qboolean left, bool right)
     {
         var realBoolValue = (left.value != 0);

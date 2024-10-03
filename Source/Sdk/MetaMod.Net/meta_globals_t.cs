@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldSrc.MetaMod.Native;
-
+﻿namespace GoldSrc.MetaMod.Native;
 public unsafe struct meta_globals_t
 {
     public META_RES mres;          // writable; plugin's return flag

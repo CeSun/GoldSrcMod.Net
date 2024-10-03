@@ -12,6 +12,15 @@ namespace Module;
 
 public unsafe static class Module
 {
+    static Module()
+    {
+        g_EntityAPI_Table.pfnThink = &Test.Think;
+
+        g_EntityAPI_Post_Table.pfnThink = &Test.Think;
+        g_MetaFunctions_Table.pfnGetEntityAPI2 = &GetEntityAPI2;
+        g_MetaFunctions_Table.pfnGetEntityAPI2_Post = &GetEntityAPI2_Post;
+    }
+
     [UnmanagedCallersOnly(EntryPoint = "GetEntityAPI2", CallConvs = [typeof(CallConvCdecl)])]
     public static int GetEntityAPI2(DLL_FUNCTIONS* pFunctionTable, int* interfaceVersion)
     {

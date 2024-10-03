@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GoldSrc.MetaMod.Native;
-
+﻿namespace GoldSrc.MetaMod.Native;
 public enum META_RES
 {
     MRES_UNSET = 0,

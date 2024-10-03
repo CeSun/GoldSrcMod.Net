@@ -1,9 +1,6 @@
-﻿
-
-using GoldSrc.HLSDK.Native;
+﻿using GoldSrc.HLSDK.Native;
 
 namespace GoldSrc.MetaMod.Native;
-
 public unsafe struct mutil_funcs_t
 {
     public delegate* unmanaged[Cdecl]<plugin_info_t*, sbyte*, void> pfnLogConsole;

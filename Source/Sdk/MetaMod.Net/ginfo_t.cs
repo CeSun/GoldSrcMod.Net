@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GoldSrc.MetaMod.Native;
 
-public unsafe enum ginfo_t
+public enum ginfo_t
 {
     GINFO_NAME = 0,
     GINFO_DESC,

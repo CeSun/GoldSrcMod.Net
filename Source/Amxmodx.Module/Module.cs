@@ -1,6 +1,8 @@
-﻿using GoldSrc.Amxmodx.Native;
+﻿using GoldSrc.Amxmodx;
+using GoldSrc.Amxmodx.Native;
 using GoldSrc.HLSDK;
 using GoldSrc.HLSDK.Native;
+using GoldSrc.MetaMod;
 using GoldSrc.MetaMod.Native;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -15,9 +17,9 @@ public unsafe static class Module
     {
         if (pFunctionTable == null)
             return False;
-        if (*interfaceVersion != INTERFACE_VERSION)
+        if (*interfaceVersion != HLSDKInfo.INTERFACE_VERSION)
         {
-            *interfaceVersion = INTERFACE_VERSION;
+            *interfaceVersion = HLSDKInfo.INTERFACE_VERSION;
             return False;
         }
         *pFunctionTable = g_EntityAPI_Table;
@@ -30,9 +32,9 @@ public unsafe static class Module
     {
         if (pFunctionTable == null)
             return False;
-        if (*interfaceVersion != INTERFACE_VERSION)
+        if (*interfaceVersion != HLSDKInfo.INTERFACE_VERSION)
         {
-            *interfaceVersion = INTERFACE_VERSION;
+            *interfaceVersion = HLSDKInfo.INTERFACE_VERSION;
             return False;
         }
         *pFunctionTable = g_EntityAPI_Post_Table;
@@ -45,9 +47,9 @@ public unsafe static class Module
     {
         if (pengfuncsFromEngine == null)
             return False;
-        if (*interfaceVersion != ENGINE_INTERFACE_VERSION)
+        if (*interfaceVersion != MetaModInfo.ENGINE_INTERFACE_VERSION)
         {
-            *interfaceVersion = ENGINE_INTERFACE_VERSION;
+            *interfaceVersion = MetaModInfo.ENGINE_INTERFACE_VERSION;
             return False;
         }
         *pengfuncsFromEngine = g_EngineFuncs_Table;
@@ -60,9 +62,9 @@ public unsafe static class Module
     {
         if (pengfuncsFromEngine == null)
             return False;
-        if (*interfaceVersion != ENGINE_INTERFACE_VERSION)
+        if (*interfaceVersion != MetaModInfo.ENGINE_INTERFACE_VERSION)
         {
-            *interfaceVersion = ENGINE_INTERFACE_VERSION;
+            *interfaceVersion = MetaModInfo.ENGINE_INTERFACE_VERSION;
             return False;
         }
         *pengfuncsFromEngine = g_EngineFuncs_Post_Table;
@@ -75,9 +77,9 @@ public unsafe static class Module
     {
         if (pNewFunctionTable == null)
             return False;
-        if (*interfaceVersion != NEW_DLL_FUNCTIONS_VERSION)
+        if (*interfaceVersion != HLSDKInfo.NEW_DLL_FUNCTIONS_VERSION)
         {
-            *interfaceVersion = NEW_DLL_FUNCTIONS_VERSION;
+            *interfaceVersion = HLSDKInfo.NEW_DLL_FUNCTIONS_VERSION;
             return False;
         }
         *pNewFunctionTable = g_NewFuncs_Table;
@@ -90,9 +92,9 @@ public unsafe static class Module
     {
         if (pNewFunctionTable == null)
             return False;
-        if (*interfaceVersion != NEW_DLL_FUNCTIONS_VERSION)
+        if (*interfaceVersion != HLSDKInfo.NEW_DLL_FUNCTIONS_VERSION)
         {
-            *interfaceVersion = NEW_DLL_FUNCTIONS_VERSION;
+            *interfaceVersion = HLSDKInfo.NEW_DLL_FUNCTIONS_VERSION;
             return False;
         }
         *pNewFunctionTable = g_NewFuncs_Post_Table;
@@ -115,7 +117,7 @@ public unsafe static class Module
         var mmajor = int.Parse(list[0]);
         var mminor = int.Parse(list[1]);
 
-        list = META_INTERFACE_VERSION.Split(":");
+        list = MetaModInfo.META_INTERFACE_VERSION.Split(":");
         var pmajor = int.Parse(list[0]);
         var pminor = int.Parse(list[1]);
 
@@ -162,9 +164,9 @@ public unsafe static class Module
     {
         if (interfaceVersion == null || moduleInfo == null)
             return AMXX_PARAM;
-        if (*interfaceVersion != AMXX_INTERFACE_VERSION)
+        if (*interfaceVersion != AmxxInfo.AMXX_INTERFACE_VERSION)
         {
-            *interfaceVersion = AMXX_INTERFACE_VERSION;
+            *interfaceVersion = AmxxInfo.AMXX_INTERFACE_VERSION;
             return AMXX_IFVERS;
         }
         *moduleInfo = g_ModuleInfo;
@@ -183,13 +185,284 @@ public unsafe static class Module
     {
         if (reqFnptrFunc == null)
             return AMXX_PARAM;
+        var size = sizeof(AMX);
         g_fn_RequestFunction = reqFnptrFunc;
         using (var funName = "BuildPathname".GetNativeString())
         {
-
+            g_fn_BuildPathname = (delegate* unmanaged[Cdecl]<sbyte*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "BuildPathnameR".GetNativeString())
+        {
+            g_fn_BuildPathnameR = (delegate* unmanaged[Cdecl]<sbyte*, uint, sbyte*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "PrintSrvConsole".GetNativeString())
+        {
+            g_fn_PrintSrvConsole = (delegate* unmanaged[Cdecl]<sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetModname".GetNativeString())
+        {
+            g_fn_GetModname = (delegate* unmanaged[Cdecl]<sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "Log".GetNativeString())
+        {
+            g_fn_Log = (delegate* unmanaged[Cdecl]<sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "LogError".GetNativeString())
+        {
+            g_fn_LogErrorFunc = (delegate* unmanaged[Cdecl]<AMX*, int, sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "MergeDefinitionFile".GetNativeString())
+        {
+            g_fn_MergeDefinition_File = (delegate* unmanaged[Cdecl]<sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "Format".GetNativeString())
+        {
+            g_fn_Format = (delegate* unmanaged[Cdecl]<sbyte*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegisterFunction".GetNativeString())
+        {
+            g_fn_RegisterFunction = (delegate* unmanaged[Cdecl]<void*, sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegisterFunctionEx".GetNativeString())
+        {
+            g_fn_RegisterFunctionEx = (delegate* unmanaged[Cdecl]<void*, sbyte*, void*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetAmxScript".GetNativeString())
+        {
+            g_fn_GetAmxScript = (delegate* unmanaged[Cdecl]<int, AMX*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "FindAmxScriptByAmx".GetNativeString())
+        {
+            g_fn_FindAmxScriptByAmx = (delegate* unmanaged[Cdecl]<AMX*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "FindAmxScriptByName".GetNativeString())
+        {
+            g_fn_FindAmxScriptByName = (delegate* unmanaged[Cdecl]<sbyte*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "LoadAmxScript".GetNativeString())
+        {
+            g_fn_LoadAmxScript = (delegate* unmanaged[Cdecl]<AMX*, void**, sbyte*, sbyte*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "UnloadAmxScript".GetNativeString())
+        {
+            g_fn_UnloadAmxScript = (delegate* unmanaged[Cdecl]<AMX*, void**, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetAmxScriptName".GetNativeString())
+        {
+            g_fn_GetAmxScriptName = (delegate* unmanaged[Cdecl]<int, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "SetAmxString".GetNativeString())
+        {
+            g_fn_SetAmxString = (delegate* unmanaged[Cdecl]<AMX*, int, sbyte*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetAmxString".GetNativeString())
+        {
+            g_fn_GetAmxString = (delegate* unmanaged[Cdecl]<AMX*, int, int, int*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetAmxStringLen".GetNativeString())
+        {
+            g_fn_GetAmxStringLen = (delegate* unmanaged[Cdecl]<int*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "FormatAmxString".GetNativeString())
+        {
+            g_fn_FormatAmxString = (delegate* unmanaged[Cdecl]<AMX*, int*, int, int*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "CopyAmxMemory".GetNativeString())
+        {
+            g_fn_CopyAmxMemory = (delegate* unmanaged[Cdecl]<int*, int*, int, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetAmxAddr".GetNativeString())
+        {
+            g_fn_GetAmxAddr = (delegate* unmanaged[Cdecl]<AMX*, int, int*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "AddNatives".GetNativeString())
+        {
+            g_fn_AddNatives = (delegate* unmanaged[Cdecl]<AMX_NATIVE_INFO*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "AddNewNatives".GetNativeString())
+        {
+            g_fn_AddNewNatives = (delegate* unmanaged[Cdecl]<AMX_NATIVE_INFO*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RaiseAmxError".GetNativeString())
+        {
+            g_fn_RaiseAmxError = (delegate* unmanaged[Cdecl]<AMX*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegisterForward".GetNativeString())
+        {
+            g_fn_RegisterForward = (delegate* unmanaged[Cdecl]<sbyte*, ForwardExecType, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegisterSPForward".GetNativeString())
+        {
+            g_fn_RegisterSPForward = (delegate* unmanaged[Cdecl]<AMX*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegisterSPForwardByName".GetNativeString())
+        {
+            g_fn_RegisterSPForwardByName = (delegate* unmanaged[Cdecl]<AMX*, sbyte*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "UnregisterSPForward".GetNativeString())
+        {
+            g_fn_UnregisterSPForward = (delegate* unmanaged[Cdecl]<int, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "ExecuteForward".GetNativeString())
+        {
+            g_fn_ExecuteForward = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "PrepareCharArray".GetNativeString())
+        {
+            g_fn_PrepareCharArray = (delegate* unmanaged[Cdecl]<sbyte*, uint, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "PrepareCellArrayA".GetNativeString())
+        {
+            g_fn_PrepareCellArrayA = (delegate* unmanaged[Cdecl]<int*, uint, bool, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "PrepareCharArrayA".GetNativeString())
+        {
+            g_fn_PrepareCharArrayA = (delegate* unmanaged[Cdecl]<sbyte*, uint, bool, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerValid".GetNativeString())
+        {
+            g_fn_IsPlayerValid = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerName".GetNativeString())
+        {
+            g_fn_GetPlayerName = (delegate* unmanaged[Cdecl]<int, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerIP".GetNativeString())
+        {
+            g_fn_GetPlayerIP = (delegate* unmanaged[Cdecl]<int, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerInGame".GetNativeString())
+        {
+            g_fn_IsPlayerIngame = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerBot".GetNativeString())
+        {
+            g_fn_IsPlayerBot = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerAuthorized".GetNativeString())
+        {
+            g_fn_IsPlayerAuthorized = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerTime".GetNativeString())
+        {
+            g_fn_GetPlayerTime = (delegate* unmanaged[Cdecl]<int, float>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerPlayTime".GetNativeString())
+        {
+            g_fn_GetPlayerPlayTime = (delegate* unmanaged[Cdecl]<int, float>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerCurweapon".GetNativeString())
+        {
+            g_fn_GetPlayerCurweapon = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerTeam".GetNativeString())
+        {
+            g_fn_GetPlayerTeam = (delegate* unmanaged[Cdecl]<int, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerDeaths".GetNativeString())
+        {
+            g_fn_GetPlayerDeaths = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerMenu".GetNativeString())
+        {
+            g_fn_GetPlayerMenu = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerKeys".GetNativeString())
+        {
+            g_fn_GetPlayerKeys = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerAlive".GetNativeString())
+        {
+            g_fn_IsPlayerAlive = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerFrags".GetNativeString())
+        {
+            g_fn_GetPlayerFrags = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerConnecting".GetNativeString())
+        {
+            g_fn_IsPlayerConnecting = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "IsPlayerHLTV".GetNativeString())
+        {
+            g_fn_IsPlayerHLTV = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerArmor".GetNativeString())
+        {
+            g_fn_GetPlayerArmor = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerHealth".GetNativeString())
+        {
+            g_fn_GetPlayerHealth = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerFlags".GetNativeString())
+        {
+            g_fn_GetPlayerFlags = (delegate* unmanaged[Cdecl]<int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetPlayerEdict".GetNativeString())
+        {
+            g_fn_GetPlayerEdict = (delegate* unmanaged[Cdecl]<int, edict_t*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "amx_Push".GetNativeString())
+        {
+            g_fn_AmxPush = (delegate* unmanaged[Cdecl]<AMX*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "SetPlayerTeamInfo".GetNativeString())
+        {
+            g_fn_SetTeamInfo = (delegate* unmanaged[Cdecl]<int, int, sbyte*, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "PlayerPropAddr".GetNativeString())
+        {
+            g_fn_PlayerPropAddr = (delegate* unmanaged[Cdecl]<int, int, void*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RegAuthFunc".GetNativeString())
+        {
+            g_fn_RegAuthFunc = (delegate* unmanaged[Cdecl]<delegate* unmanaged[Cdecl]<int, sbyte*, void>, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "UnregAuthFunc".GetNativeString())
+        {
+            g_fn_UnregAuthFunc = (delegate* unmanaged[Cdecl]<delegate* unmanaged[Cdecl]<int, sbyte*, void>, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "FindLibrary".GetNativeString())
+        {
+            g_fn_FindLibrary = (delegate* unmanaged[Cdecl]<sbyte*, LibType, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "AddLibraries".GetNativeString())
+        {
+            g_fn_AddLibraries = (delegate* unmanaged[Cdecl]<sbyte*, LibType, void*, uint>)reqFnptrFunc(funName);
+        }
+        using (var funName = "RemoveLibraries".GetNativeString())
+        {
+            g_fn_RemoveLibraries = (delegate* unmanaged[Cdecl]<void*, uint>)reqFnptrFunc(funName);
+        }
+        using (var funName = "OverrideNatives".GetNativeString())
+        {
+            g_fn_OverrideNatives = (delegate* unmanaged[Cdecl]<AMX_NATIVE_INFO*, sbyte*, void>)reqFnptrFunc(funName);
+        }
+        using (var funName = "GetLocalInfo".GetNativeString())
+        {
+            g_fn_GetLocalInfo = (delegate* unmanaged[Cdecl]<sbyte*, sbyte*, sbyte*>)reqFnptrFunc(funName);
+        }
+        using (var funName = "AmxReregister".GetNativeString())
+        {
+            g_fn_AmxReRegister = (delegate* unmanaged[Cdecl]<AMX*, AMX_NATIVE_INFO*, int, int>)reqFnptrFunc(funName);
+        }
+        using (var funName = "MessageBlock".GetNativeString())
+        {
+            g_fn_MessageBlock = (delegate* unmanaged[Cdecl]<int, int, int*, void>)reqFnptrFunc(funName);
         }
 
+
+
         return AMXX_OK;
+    }
+
+    static void REQFUNC<T>(string name, out T* t) where T : unmanaged
+    {
+        using (var funName = name.GetNativeString())
+        {
+            t = (T*)g_fn_RequestFunction(funName);
+        }
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Detach", CallConvs = [typeof(CallConvCdecl)])]

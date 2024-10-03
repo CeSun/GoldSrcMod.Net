@@ -7,7 +7,7 @@
 		<PublishAot>true</PublishAot>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<RootNamespace>Module</RootNamespace>
-		<AssemblyName>$(MSBuildProjectName)_amxx.dll</AssemblyName>
+		<AssemblyName>$(MSBuildProjectName)_amxx</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>

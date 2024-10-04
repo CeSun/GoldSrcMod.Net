@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Metahook.Net" Version="1.0.1-alpha" />
+    <PackageReference Include="Metahook.Net" Version="1.0.2-alpha" />
   </ItemGroup>
 
 </Project>

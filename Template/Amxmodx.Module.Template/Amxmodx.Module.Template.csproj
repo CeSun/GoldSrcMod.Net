@@ -7,11 +7,11 @@
 		<PublishAot>true</PublishAot>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<RootNamespace>Module</RootNamespace>
+		<AssemblyName>$(MSBuildProjectName.Replace(".", ""))_amxx</AssemblyName>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sdk\HLSDK.Net\HLSDK.Net.csproj" />
-		<ProjectReference Include="..\Sdk\Amxmodx.Net\Amxmodx.Net.csproj" />
+    	<PackageReference Include="Amxmodx.Net" Version="1.0.2-alpha" />
 	</ItemGroup>
 
 </Project>

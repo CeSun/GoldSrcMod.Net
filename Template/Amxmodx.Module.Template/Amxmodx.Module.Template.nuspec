@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Amxmodx.Module.Template</id>
+    <version>1.0.2-alpha</version>
+    <description>Amxmodx Module</description>
+    <authors>CeSun</authors>
+    <packageTypes>
+      <packageType name="Amxmodx.Module.Template" />
+    </packageTypes>
+  </metadata>
+    <files>
+    <file src=".\**" target="Amxmodx.Module.Template" exclude="**\bin\**;**\obj\**;.\.vs\**;**\Metahook.Plugin.Template.csproj.user;**\Properties\**;.\Amxmodx.Module.Template.nuspec" />
+  </files>
+</package>

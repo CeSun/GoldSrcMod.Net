@@ -4,7 +4,6 @@
   "classifications": [ "GoldSrc", "Plugin", "MetaMod", "Amxmodx" ],
   "name": "Amxmodx Module",
   "identity": "AmxmodxModule",
-  "groupIdentity": "CeSun",
   "shortName": "AMT",
   "tags": {
     "language": "C#",

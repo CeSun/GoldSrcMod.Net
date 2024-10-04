@@ -4,7 +4,6 @@
   "classifications": [ "GoldSrc", "Plugin", "Metahook" ],
   "name": "Metahook Plus Plugin",
   "identity": "MetahookPlusPlugin",
-  "groupIdentity": "CeSun",
   "shortName": "MPT",
   "tags": {
     "language": "C#",

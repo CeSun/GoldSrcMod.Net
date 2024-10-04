@@ -12,7 +12,7 @@
     <Description>HLSDK for .Net</Description>
     <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CeSun/GoldSrcMod.Net</RepositoryUrl>
-    <PackageTags>hlsdk</PackageTags>
+    <PackageTags>MetaHook;HLSDK;GoldSrc</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 

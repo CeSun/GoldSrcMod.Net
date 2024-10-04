@@ -14,11 +14,12 @@ public unsafe static class Module
 {
     static Module()
     {
-        g_EntityAPI_Table.pfnThink = &Test.Think;
-
-        g_EntityAPI_Post_Table.pfnThink = &Test.Think;
         g_MetaFunctions_Table.pfnGetEntityAPI2 = &GetEntityAPI2;
         g_MetaFunctions_Table.pfnGetEntityAPI2_Post = &GetEntityAPI2_Post;
+        g_MetaFunctions_Table.pfnGetNewDLLFunctions = &GetNewDLLFunctions;
+        g_MetaFunctions_Table.pfnGetNewDLLFunctions_Post = &GetNewDLLFunctions_Post;
+        g_MetaFunctions_Table.pfnGetEngineFunctions = &GetEngineFunctions;
+        g_MetaFunctions_Table.pfnGetEngineFunctions_Post = &GetEngineFunctions_Post;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetEntityAPI2", CallConvs = [typeof(CallConvCdecl)])]
@@ -150,6 +151,7 @@ public unsafe static class Module
             return False;
         *pFunctionTable = g_MetaFunctions_Table;
         gpGamedllFuncs = pGamedllFuncs;
+        Plugin.FN_META_ATTACH();
         return True;
     }
 
@@ -158,6 +160,7 @@ public unsafe static class Module
     {
         if (now > Plugin_info->unloadable && reason != PL_UNLOAD_REASON.PNL_CMD_FORCED)
             return False;
+        Plugin.FN_META_DETACH();
         return True;
     }
 
@@ -179,13 +182,14 @@ public unsafe static class Module
             return AMXX_IFVERS;
         }
         *moduleInfo = g_ModuleInfo;
-
+        Plugin.FN_AMXX_QUERY();
         return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_CheckGame", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_CheckGame(nint game)
     {
+        Plugin.FN_AMXX_CHECKGAME((sbyte*)game);
         return AMXX_GAME_OK;
     }
 
@@ -460,41 +464,34 @@ public unsafe static class Module
         {
             g_fn_MessageBlock = (delegate* unmanaged[Cdecl]<int, int, int*, void>)reqFnptrFunc(funName);
         }
-
-
-
+        Plugin.FN_AMXX_ATTACH();
         return AMXX_OK;
-    }
-
-    static void REQFUNC<T>(string name, out T* t) where T : unmanaged
-    {
-        using (var funName = name.GetNativeString())
-        {
-            t = (T*)g_fn_RequestFunction(funName);
-        }
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_Detach", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_Detach()
     {
+        Plugin.FN_AMXX_DETACH();
         return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_PluginsLoaded", CallConvs = [typeof(CallConvCdecl)])]
     public static int AMXX_PluginsLoaded()
     {
+        Plugin.FN_AMXX_PLUGINSLOADED();
         return AMXX_OK;
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_PluginsUnloaded", CallConvs = [typeof(CallConvCdecl)])]
     public static void AMXX_PluginsUnloaded()
     {
+        Plugin.FN_AMXX_PLUGINSUNLOADED();
     }
 
     [UnmanagedCallersOnly(EntryPoint = "AMXX_PluginsUnloading", CallConvs = [typeof(CallConvCdecl)])]
     public static void AMXX_PluginsUnloading()
     {
-
+        Plugin.FN_AMXX_PLUGINSUNLOADING();
     }
 
 }

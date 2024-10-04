@@ -6,6 +6,16 @@
     <Nullable>enable</Nullable>
     <RootNamespace>GoldSrc.MetaMod</RootNamespace>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+
+	  <Title>$(AssemblyName)</Title>
+	  <Version>$(NugetVersion)</Version>
+	  <Authors>CeSun</Authors>
+	  <Description>MetaMod for .Net</Description>
+	  <PackageProjectUrl>https://github.com/CeSun/GoldSrcMod.Net</PackageProjectUrl>
+	  <RepositoryUrl>https://github.com/CeSun/GoldSrcMod.Net</RepositoryUrl>
+	  <PackageTags>MetaMod;HLSDK;GoldSrc</PackageTags>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

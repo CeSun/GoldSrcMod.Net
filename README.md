@@ -5,9 +5,10 @@
 项目里各各SDK的命名以及使用方式尽量保持和c++原版一致，减少学习成本，所以代码中会有大量的“不安全(unsafe)”代码。
 
 ## 项目状态
-Metahook插件: 可用。HLSDK和Metahook SDK基本上已经移植完成，缺少测试。
 
-AmxModX模块：不可用，正在消极开发中（amxmodx的模块需要写的代码实在是太多了！）
+***1. Metahook插件: 可用***
+
+ ***2. AmxModX模块：可用***
 
 ## 平台支持：
 仅限Windows，因为metahook只支持windows
@@ -20,13 +21,26 @@ AmxModX模块：不可用，正在消极开发中（amxmodx的模块需要写的
 ### 创建项目：
 1. 安装项目模板：
 ```shell
+# metahook plugin项目模板
 dotnet new install Metahook.Plugin.Template
+# amxmodx module项目模板
+dotnet new install Amxmodx.Module.Template
 ```
 2. 创建项目
 
-   2.1 打开VS，新建项目，搜索Metahook，并创建
+   2.1 打开VS，新建项目，搜索GoldSrc，如图列出Metahook Plugin和Amxmodx Module的项目模板
+
+   ![alt text](Document/Image/image-3.png)
    
-   2.2 或者执行命令行创建: `dotnet new MPT -o HelloMetahook`
+   2.2 或者执行命令行创建: 
+
+      ```shell
+      #  创建metahook plugin项目
+      dotnet new MPT -o HelloMetahook
+      
+      #  创建amxmodx module项目
+      dotnet new AMT -o HelloAmxmodx
+      ```
    
 ### 编译
 必须使用dotnet publish命令发布，或者使用ide的发布功能，选择[独立] [win-x86] 发布。
@@ -36,4 +50,5 @@ dotnet publish HelloMetahook.csproj -c Release -r win-x86 -o ./build
 ```
 
 ### 调试：
- [调试文档](Document/Debug.md)。
+
+ 请访问：[调试文档](Document/Debug.md)

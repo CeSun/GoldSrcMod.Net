@@ -7,11 +7,15 @@ using GoldSrc.MetaMod.Native;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using static Module.Global;
+#pragma warning disable CS8981
+using cell = int;
+#pragma warning restore CS8981
 
 namespace Module;
 
 public unsafe static class Module
 {
+    public static AMX_NATIVE_INFO* pAmxNativeInfo = null;
     static Module()
     {
         g_MetaFunctions_Table.pfnGetEntityAPI2 = &GetEntityAPI2;
@@ -20,6 +24,20 @@ public unsafe static class Module
         g_MetaFunctions_Table.pfnGetNewDLLFunctions_Post = &GetNewDLLFunctions_Post;
         g_MetaFunctions_Table.pfnGetEngineFunctions = &GetEngineFunctions;
         g_MetaFunctions_Table.pfnGetEngineFunctions_Post = &GetEngineFunctions_Post;
+
+        NativeFunctionRegister.RegisterFunction(Plugin.AmxNativeInfoList);
+
+        pAmxNativeInfo = (AMX_NATIVE_INFO*)Marshal.AllocHGlobal(sizeof(AMX_NATIVE_INFO) * (Plugin.AmxNativeInfoList.Count + 1));
+
+        for(int i = 0; i < Plugin.AmxNativeInfoList.Count; i++)
+        {
+            pAmxNativeInfo[i] = Plugin.AmxNativeInfoList[i];
+        }
+        pAmxNativeInfo[Plugin.AmxNativeInfoList.Count].name = null;
+        pAmxNativeInfo[Plugin.AmxNativeInfoList.Count].func = nint.Zero;
+
+
+
     }
 
     [UnmanagedCallersOnly(EntryPoint = "GetEntityAPI2", CallConvs = [typeof(CallConvCdecl)])]
@@ -464,6 +482,17 @@ public unsafe static class Module
         {
             g_fn_MessageBlock = (delegate* unmanaged[Cdecl]<int, int, int*, void>)reqFnptrFunc(funName);
         }
+
+        using (var funName = "RealToCell".GetNativeString())
+        {
+            g_fn_RealToCell = (delegate* unmanaged[Cdecl]<float, cell>)reqFnptrFunc(funName);
+        }
+        using (var funName = "CellToReal".GetNativeString())
+        {
+            g_fn_CellToReal = (delegate* unmanaged[Cdecl]<cell, float>)reqFnptrFunc(funName);
+        }
+        // 测试注册函数
+        g_fn_AddNatives(pAmxNativeInfo);
         Plugin.FN_AMXX_ATTACH();
         return AMXX_OK;
     }

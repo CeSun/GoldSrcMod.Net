@@ -11,7 +11,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sdk\Amxmodx.Net\Amxmodx.Net.csproj" />
+	  <ProjectReference Include="..\Framework\AmxxModuleFramework\Amxmodx.Framework.csproj" />
+	  <ProjectReference Include="..\SourceGenerators\AmxxModuleSourceGenerator\Amxmodx.SourceGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
 </Project>

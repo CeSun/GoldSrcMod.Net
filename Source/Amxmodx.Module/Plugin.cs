@@ -13,17 +13,15 @@ namespace Module;
 
 public unsafe class Plugin
 {
-    public static AMX_NATIVE_INFO* nativeInfo = null;
+
+    public static List<AMX_NATIVE_INFO> AmxNativeInfoList = [];
     static Plugin()
     {
-        nativeInfo = (AMX_NATIVE_INFO*)Marshal.AllocHGlobal(sizeof(AMX_NATIVE_INFO) * 2);
-        
-        nativeInfo[0].name = "TestHelloModule".GetNativeString();
-        nativeInfo[0].func = (nint)(delegate* unmanaged[Cdecl]<AMX*, int*, int>)&Plugin.TestHelloModule;
-
-
-        nativeInfo[1].name = null;
-        nativeInfo[1].func = nint.Zero;
+        AmxNativeInfoList.Add(new AMX_NATIVE_INFO
+        {
+            name = "TestHelloModule".GetNativeString(),
+            func = (nint)(delegate* unmanaged[Cdecl]<AMX*, int*, int>)&Plugin.TestHelloModule,
+        });
     }
 
     public static void FN_META_QUERY()
@@ -53,8 +51,6 @@ public unsafe class Plugin
 
     public static void FN_AMXX_ATTACH()
     {
-        // 测试注册函数
-        g_fn_AddNatives(Plugin.nativeInfo);
     }
 
     public static void FN_AMXX_DETACH()

@@ -22,7 +22,7 @@ public unsafe struct cl_enginefunc_t
     public delegate* unmanaged[Cdecl]<sbyte*, float> pfnGetCvarFloat;
     public delegate* unmanaged[Cdecl]<sbyte*, sbyte*> pfnGetCvarString;
     public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<void>, int> pfnAddCommand;
-    public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<byte*, int, void*, int>, int> pfnHookUserMsg;
+    public delegate* unmanaged[Cdecl]<sbyte*, delegate* unmanaged[Cdecl]<sbyte*, int, void*, int>, int> pfnHookUserMsg;
     public delegate* unmanaged[Cdecl]<sbyte*, int> pfnServerCmd;
     public delegate* unmanaged[Cdecl]<sbyte*, int> pfnClientCmd;
     public delegate* unmanaged[Cdecl]<int, hud_player_info_t*, void> pfnGetPlayerInfo;

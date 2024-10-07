@@ -3,14 +3,14 @@ using System.Runtime.InteropServices;
 
 namespace GoldSrc.HLSDK.PackageClasses;
 
-public unsafe class ClEngineFuncs : NativePackageClass<cl_enginefunc_t>
+public unsafe class ClEngineFuncs : NativePackageClass<cl_enginefuncs_t>
 {
     
-    public ClEngineFuncs(ref cl_enginefunc_t enginefuncs) : base(ref enginefuncs)
+    public ClEngineFuncs(ref cl_enginefuncs_t enginefuncs) : base(ref enginefuncs)
     {
     }
 
-    public ClEngineFuncs(cl_enginefunc_t* enginefuncs) : base(enginefuncs)
+    public ClEngineFuncs(cl_enginefuncs_t* enginefuncs) : base(enginefuncs)
     {
 
     }

@@ -8,9 +8,9 @@ namespace Plugin;
 public unsafe static class Exportfuncs
 {
     [UnmanagedCallersOnly(CallConvs = [typeof(CallConvCdecl)])]
-    public static int Initialize(cl_enginefunc_t *pEnginefuncs, int iVersion)
+    public static int Initialize(cl_enginefuncs_t *pEnginefuncs, int iVersion)
     {
-        var s = sizeof(cl_enginefunc_t);
+        var s = sizeof(cl_enginefuncs_t);
 
         gEngfuncs = *pEnginefuncs;
         return gExportfuncs.Initialize(pEnginefuncs, iVersion);

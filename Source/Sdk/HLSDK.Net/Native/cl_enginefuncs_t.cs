@@ -2,7 +2,7 @@
 
 namespace GoldSrc.HLSDK.Native;
 
-public unsafe struct cl_enginefunc_t
+public unsafe struct cl_enginefuncs_t
 {
     public delegate* unmanaged[Cdecl]<sbyte*, int> pfnSPR_Load;
     public delegate* unmanaged[Cdecl]<int, int> pfnSPR_Frames;

@@ -9,5 +9,5 @@ public unsafe static class Global
     public static mh_interface_t* g_pInterface;
     public static metahook_api_t* g_pMetaHookAPI;
     public static mh_enginesave_t* g_pMetaSave;
-    public static cl_enginefunc_t gEngfuncs;
+    public static cl_enginefuncs_t gEngfuncs;
 }

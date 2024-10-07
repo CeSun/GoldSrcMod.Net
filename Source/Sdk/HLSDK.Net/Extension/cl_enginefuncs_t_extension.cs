@@ -1,18 +1,12 @@
 ﻿using GoldSrc.HLSDK.Native;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace GoldSrc.HLSDK.Extension;
 
 public delegate int pfnUserMsgHook(string pszName, Span<byte> msg);
 public unsafe static class cl_enginefuncs_t_extension
 {
-    public static int SPR_Load(this ref cl_enginefunc_t enginefuncs, string picName)
+    public static int SPR_Load(this ref cl_enginefuncs_t enginefuncs, string picName)
     {
         using (var nativeStr = picName.GetNativeString())
         {
@@ -20,7 +14,7 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-    public static Span<client_sprite_t> SPR_GetList(this ref cl_enginefunc_t enginefuncs, string sz)
+    public static Span<client_sprite_t> SPR_GetList(this ref cl_enginefuncs_t enginefuncs, string sz)
     {
         using (var nativeStr = sz.GetNativeString())
         {
@@ -31,7 +25,7 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-    public static SCREENINFO GetScreenInfo(this ref cl_enginefunc_t enginefuncs)
+    public static SCREENINFO GetScreenInfo(this ref cl_enginefuncs_t enginefuncs)
     {
         SCREENINFO screeninfo = default;
         screeninfo.iSize = sizeof(SCREENINFO);
@@ -39,34 +33,34 @@ public unsafe static class cl_enginefuncs_t_extension
         return screeninfo;
     }
 
-    public static cvar_t* RegisterVariable(this ref cl_enginefunc_t enginefuncs, string szName, string szValue, int flag)
+    public static cvar_t* RegisterVariable(this ref cl_enginefuncs_t enginefuncs, string szName, string szValue, int flag)
     {
         using var szNameNativeStr = szName.GetNativeString();
         using var szValueNativeStr = szValue.GetNativeString();
         return enginefuncs.pfnRegisterVariable(szNameNativeStr, szValueNativeStr, flag);
     }
 
-    public static float GetCvarFloat(this ref cl_enginefunc_t enginefuncs, string szName)
+    public static float GetCvarFloat(this ref cl_enginefuncs_t enginefuncs, string szName)
     {
         using var szNameNativeStr = szName.GetNativeString();
         return enginefuncs.pfnGetCvarFloat(szNameNativeStr);
     }
 
-    public static string GetCvarString(this ref cl_enginefunc_t enginefuncs, string szName)
+    public static string GetCvarString(this ref cl_enginefuncs_t enginefuncs, string szName)
     {
         using var szNameNativeStr = szName.GetNativeString();
         nint p = (nint)enginefuncs.pfnGetCvarString(szNameNativeStr);
         return Marshal.PtrToStringAnsi(p) ?? "";
     }
 
-    public static int AddCommand(this ref cl_enginefunc_t enginefuncs, string cmd_name, Action action)
+    public static int AddCommand(this ref cl_enginefuncs_t enginefuncs, string cmd_name, Action action)
     {
         var ptr = Marshal.GetFunctionPointerForDelegate(action);
         using var cmd_nameNativeStr = cmd_name.GetNativeString();
         return enginefuncs.pfnAddCommand(cmd_nameNativeStr, (delegate* unmanaged[Cdecl]<void>)ptr);
     }
 
-    public static int HookUserMsg(this ref cl_enginefunc_t enginefuncs, string szMsgName, pfnUserMsgHook pfn)
+    public static int HookUserMsg(this ref cl_enginefuncs_t enginefuncs, string szMsgName, pfnUserMsgHook pfn)
     {
         var lambda = (sbyte* pszName, int iSize, void* pbuf) =>
         {
@@ -82,7 +76,7 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-    public static int ServerCmd(this ref cl_enginefunc_t enginefuncs, string szCmdString)
+    public static int ServerCmd(this ref cl_enginefuncs_t enginefuncs, string szCmdString)
     {
         using (var szCmdStringNativeString = szCmdString.GetNativeString())
         {
@@ -90,7 +84,7 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-    public static int ClientCmd(this ref cl_enginefunc_t enginefuncs, string szCmdString)
+    public static int ClientCmd(this ref cl_enginefuncs_t enginefuncs, string szCmdString)
     {
         using (var szCmdStringNativeString = szCmdString.GetNativeString())
         {
@@ -98,7 +92,7 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-    public static void PlaySoundByName(this ref cl_enginefunc_t enginefuncs, string szSound, float volume)
+    public static void PlaySoundByName(this ref cl_enginefuncs_t enginefuncs, string szSound, float volume)
     {
         using (var szSoundNativeString = szSound.GetNativeString())
         {
@@ -106,6 +100,19 @@ public unsafe static class cl_enginefuncs_t_extension
         }
     }
 
-
+    public static void Con_Printf(this ref cl_enginefuncs_t enginefuncs, string text)
+    {
+        using (var textNativeString = text.GetNativeString())
+        {
+            enginefuncs.Con_Printf(textNativeString);
+        }
+    }
+    public static void Con_DPrintf(this ref cl_enginefuncs_t enginefuncs, string text)
+    {
+        using (var textNativeString = text.GetNativeString())
+        {
+            enginefuncs.Con_DPrintf(textNativeString);
+        }
+    }
 
 }

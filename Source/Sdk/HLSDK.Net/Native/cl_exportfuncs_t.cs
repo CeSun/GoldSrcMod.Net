@@ -8,7 +8,7 @@ namespace GoldSrc.HLSDK.Native;
 
 public unsafe struct cl_exportfuncs_t
 {
-    public delegate* unmanaged[Cdecl]<cl_enginefunc_t*, int, int> Initialize;
+    public delegate* unmanaged[Cdecl]<cl_enginefuncs_t*, int, int> Initialize;
     public delegate* unmanaged[Cdecl]<void> HUD_Init;
     public delegate* unmanaged[Cdecl]<int> HUD_VidInit;
     public delegate* unmanaged[Cdecl]<float, int, int> HUD_Redraw;
